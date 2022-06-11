@@ -1,14 +1,21 @@
 package linkedlist;
 
 class LL {
+    Node head;
+    private int size;
+    LL()
+    {
+        this.size= 0;
+    }
     class Node{
         String data;
         Node next;
         Node(String data){
             this.data= data;
+            size++;
         }
     }
-Node head;
+
     //add-first
     public void addFirst(String data)
     {
@@ -54,8 +61,7 @@ Node head;
         }
         System.out.println("null");
     }
-    
-    
+
     //deleteFirst
     public void deleteFirst()
     {
@@ -63,6 +69,7 @@ Node head;
             System.out.println("the list is empty");
             return;
         }
+        size--;
         head= head.next;
     }
 
@@ -73,6 +80,8 @@ Node head;
             System.out.println("the list is empty");
             return;
         }
+        size--;
+
         if(head.next==null){
             head=null;
             return;
@@ -88,7 +97,9 @@ Node head;
         secondLast.next=null;
     }
 
-
+    public int getSize(){
+        return size;
+    }
     public static void main(String[] args) {
         LL list = new LL();
         list.addFirst("a");
@@ -100,11 +111,17 @@ Node head;
 
         list.addFirst("this");
         list.printList();
-        
-         list.deleteFirst();
+        list.deleteFirst();
         list.printList();
 
         list.deleteLast();
         list.printList();
+
+        System.out.println(list.getSize());
+
+        list.addFirst("this");
+        list.addLast("List");
+        list.printList();
+        System.out.println(list.getSize());
     }
 }
